@@ -8,6 +8,10 @@ let getComputerChoice = () => {
     return choices[Math.floor(Math.random() * 3)];
 };
 
+let getPlayerChoice = () => {
+    return prompt("Rock, paper, or scissors?");
+};
+
 // Plays one round
 let playRound = (playerSelection, computerSelection) => {
     playerSelection = playerSelection.toUpperCase();
@@ -37,7 +41,7 @@ let playRound = (playerSelection, computerSelection) => {
     return "You win! Scissors beat paper.";
 };
 
-const playerSelection = "rock";
+const playerSelection = getPlayerChoice();
 const computerSelection = getComputerChoice();
 
 console.log(playRound(playerSelection, computerSelection));
