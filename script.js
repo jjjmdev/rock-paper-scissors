@@ -59,11 +59,9 @@ let playRound = (playerSelection, computerSelection) => {
 };
 
 let playGame = () => {
-    console.log(playRound(getPlayerChoice(), getComputerChoice()));
-    console.log(playRound(getPlayerChoice(), getComputerChoice()));
-    console.log(playRound(getPlayerChoice(), getComputerChoice()));
-    console.log(playRound(getPlayerChoice(), getComputerChoice()));
-    console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    while (playerScore + computerScore !== 5) {
+        console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    }
 
     console.log(playerScore, computerScore);
 };
