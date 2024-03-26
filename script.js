@@ -1,5 +1,7 @@
 // INIT random computer choice
 // Options are: rock, paper, scissors
+let playerScore = 0;
+let computerScore = 0;
 
 let getComputerChoice = () => {
     let choices = ["ROCK", "PAPER", "SCISSORS"];
@@ -10,6 +12,17 @@ let getComputerChoice = () => {
 
 let getPlayerChoice = () => {
     return prompt("Rock, paper, or scissors?");
+};
+
+// HELPER
+let playerWin = (playerSelection, computerSelection) => {
+    playerScore++;
+    return `You win! ${playerSelection} beats ${computerSelection}`;
+};
+
+let computerWin = (playerSelection, computerSelection) => {
+    computerScore++;
+    return `You lose! ${computerSelection} beats ${playerSelection}`;
 };
 
 // Plays one round
@@ -26,22 +39,33 @@ let playRound = (playerSelection, computerSelection) => {
     if (playerSelection === computerSelection) return "Draw!";
 
     if (playerSelection === "ROCK") {
-        if (computerSelection === "PAPER") return "You lose! Paper beats rock.";
+        if (computerSelection === "PAPER") {
+            return computerWin(playerSelection, computerSelection);
+        }
 
-        return "You win! Rock beats scissors.";
+        return playerWin(playerSelection, computerSelection);
     } else if (playerSelection === "PAPER") {
-        if (computerSelection === "SCISSORS")
-            return "You lose! Scissors beat paper";
+        if (computerSelection === "SCISSORS") {
+            return computerWin(playerSelection, computerSelection);
+        }
 
-        return "You win! Paper beats rock.";
-    } else if (computerSelection === "ROCK")
+        return playerWin(playerSelection, computerSelection);
+    } else if (computerSelection === "ROCK") {
         // playerSelection = 'scissors' since it's the only remaining option
-        return "You lose! Rock beats scissors.";
-
-    return "You win! Scissors beat paper.";
+        return computerWin(playerSelection, computerSelection);
+    } else {
+        return playerWin(playerSelection, computerSelection);
+    }
 };
 
-const playerSelection = getPlayerChoice();
-const computerSelection = getComputerChoice();
+let playGame = () => {
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
 
-console.log(playRound(playerSelection, computerSelection));
+    console.log(playerScore, computerScore);
+};
+
+playGame();
