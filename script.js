@@ -58,15 +58,17 @@ let playRound = (playerSelection, computerSelection) => {
 	}
 };
 
-let playGame = () => {
-	while (playerScore + computerScore !== 5) {
-		console.log(playRound(getPlayerChoice(), getComputerChoice()));
-	}
+let displayScore = () => {
+	if (playerScore >= 5) return "Player wins!";
+	else if (computerScore >= 5) return "Computer wins!";
 
-	console.log(playerScore, computerScore);
+	return `Player: ${playerScore}, Computer: ${computerScore}`;
 };
 
 const container = document.querySelector("#container");
+const result = document.querySelector("#result");
+const score = document.querySelector("#score");
+
 container.addEventListener("click", (event) => {
 	let target = event.target;
 
@@ -74,7 +76,8 @@ container.addEventListener("click", (event) => {
 		case "rock":
 		case "paper":
 		case "scissors":
-			console.log(playRound(target.id, getComputerChoice()));
+			result.textContent = `${playRound(target.id, getComputerChoice())}`;
+			score.textContent = displayScore();
 			break;
 	}
 });
